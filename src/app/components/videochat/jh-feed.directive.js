@@ -20,7 +20,8 @@
       scope: {
         feed: '=',
         clickFn: '&',
-        highlighted: '='
+        highlighted: '=',
+        thumbVideos: '='
       },
       controllerAs: 'vm',
       bindToController: true,
@@ -34,7 +35,21 @@
           var video = $('video', element)[0];
           // Mute video of the local stream
           video.muted = scope.vm.feed.isPublisher;
+          scope.vm.updateVideoChannel();
           attachMediaStream(video, newVal);
+        }
+      });
+
+      scope.$watch('vm.feed.speaking', function(newVal) {
+        if (newVal !== undefined) {
+          scope.vm.updateVideoChannel();
+        }
+      });
+
+      scope.$watch('vm.thumbVideos', function(newVal) {
+        console.log("thumb videos ", newVal);
+        if (newVal !== undefined) {
+          scope.vm.updateVideoChannel();
         }
       });
     }
@@ -57,6 +72,7 @@
       vm.stopIgnoring = stopIgnoring;
       vm.showsIgnore = showsIgnore;
       vm.showsStopIgnoring = showsStopIgnoring;
+      vm.updateVideoChannel = updateVideoChannel;
 
       function toggleAudio() {
         RoomService.toggleChannel("audio", vm.feed);
@@ -112,6 +128,16 @@
 
       function showsStopIgnoring() {
         return vm.feed.isIgnored;
+      }
+
+      function updateVideoChannel() {
+        var enabled = vm.thumbVideos;
+        if (!enabled) {
+          enabled = vm.feed.speaking;
+        }
+        if (vm.feed.stream) {
+          vm.feed.setEnabledTrack('video', enabled);
+        }
       }
     }
   }

@@ -21,9 +21,12 @@
       },
       highlightedByUser: null,
       highlighted: null,
-      isConsentDialogOpen: null
+      isConsentDialogOpen: null,
+      thumbVideos: true,
+      thumbVideosH: true // TODO: hiding instead of disabling 
     };
     $scope.enter = enter;
+    $scope.toggleThumbVideos = toggleThumbVideos;
 
     $scope.enter();
 
@@ -48,6 +51,11 @@
       UserService.currentUser().then(function (user) {
         RoomService.enter(user.username);
       });
+    }
+
+    function toggleThumbVideos() {
+      $scope.data.thumbVideos = !$scope.data.thumbVideos;
+      console.log($scope.data.thumbVideos);
     }
 
     hotkeys.bindTo($scope)

@@ -37,22 +37,22 @@
 
       this.setEnabledTrack = function(type, enabled) {
         var that = this;
-        if (this.isPublisher) {
+        if (!this.isPublisher && type === "audio" && enabled === false) {
+          DataChannelService.sendMuteRequest(this);
+        } else {
           // We need to use $timeout function just to let AngularJS know
           // about changes in the feed.
           $timeout(function() {
             var track = getTrack(type);
             track.enabled = enabled;
             that[type + "Enabled"] = enabled;
-            if (type === "audio" && enabled === false) {
-              that.speaking = false;
+            if (that.isPublisher) {
+              if (type === "audio" && enabled === false) {
+                that.speaking = false;
+              }
+              DataChannelService.sendStatus(that);
             }
-            DataChannelService.sendStatus(that);
           });
-        } else {
-          if (type === "audio" && enabled === false) {
-            DataChannelService.sendMuteRequest(this);
-          }
         }
       };
 

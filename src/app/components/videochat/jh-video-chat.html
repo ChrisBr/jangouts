@@ -6,7 +6,14 @@
   >
 </div>
 <div id="thumbnails">
-  <div jh-feed="true" feed="f" click-fn="vm.toggleHighlightedFeed(f)" ng-repeat="f in vm.feeds() | orderBy:'+display'" highlighted="vm.isHighlightedByUser(f)"></div>
+  <div
+    jh-feed="true"
+    feed="f"
+    click-fn="vm.toggleHighlightedFeed(f)"
+    ng-repeat="f in vm.feeds() | orderBy:'+display'"
+    highlighted="vm.isHighlightedByUser(f)"
+    thumb-videos="vm.thumbVideos"
+    >
+  </div>
 </div>
-
 
