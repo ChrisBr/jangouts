@@ -21,7 +21,8 @@
         feed: '=',
         clickFn: '&',
         highlighted: '=',
-        thumbVideos: '='
+        thumbVideos: '=',
+        thumbVideosH: '='
       },
       controllerAs: 'vm',
       bindToController: true,
@@ -47,7 +48,6 @@
       });
 
       scope.$watch('vm.thumbVideos', function(newVal) {
-        console.log("thumb videos ", newVal);
         if (newVal !== undefined) {
           scope.vm.updateVideoChannel();
         }
@@ -91,7 +91,13 @@
       }
 
       function isVideoVisible() {
-        return (!vm.feed.isIgnored && vm.feed.videoEnabled && vm.feed.hasVideo());
+        var visible;
+
+        visible = (!vm.feed.isIgnored && vm.feed.videoEnabled && vm.feed.hasVideo());
+        if (visible && !vm.thumbVideosH) {
+          visible = vm.feed.speaking;
+        }
+        return visible;
       }
 
       function showsEnableAudio() {

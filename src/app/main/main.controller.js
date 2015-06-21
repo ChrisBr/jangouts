@@ -23,10 +23,11 @@
       highlighted: null,
       isConsentDialogOpen: null,
       thumbVideos: true,
-      thumbVideosH: true // TODO: hiding instead of disabling 
+      thumbVideosH: true
     };
     $scope.enter = enter;
     $scope.toggleThumbVideos = toggleThumbVideos;
+    $scope.toggleThumbVideosH = toggleThumbVideosH;
 
     $scope.enter();
 
@@ -55,7 +56,12 @@
 
     function toggleThumbVideos() {
       $scope.data.thumbVideos = !$scope.data.thumbVideos;
-      console.log($scope.data.thumbVideos);
+      console.log("thumbVideos: " + $scope.data.thumbVideos + " - thumbVideosH: " + $scope.data.thumbVideosH);
+    }
+
+    function toggleThumbVideosH() {
+      $scope.data.thumbVideosH = !$scope.data.thumbVideosH;
+      console.log("thumbVideos: " + $scope.data.thumbVideos + " - thumbVideosH: " + $scope.data.thumbVideosH);
     }
 
     hotkeys.bindTo($scope)

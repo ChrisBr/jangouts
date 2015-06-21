@@ -1,6 +1,7 @@
 <div class="row" id="main-chat-session">
   <div class="col-xs-8 col-md-9 col-no-padding">
-    <div jh-video-chat="true" id="videochat-playroom" thumb-videos="data.thumbVideos">
+    <div jh-video-chat="true" id="videochat-playroom"
+      thumb-videos="data.thumbVideos" thumb-videos-h="data.thumbVideosH">
     </div>
   </div>
   <div id="chat-playroom" class="col-xs-4 col-md-3 aside-chat">
@@ -8,15 +9,21 @@
       <jh-screen-share-button></jh-screen-share-button>
       <button
         class="btn btn-default pull-right"
-        ng-click="toggleThumbVideos()"
-        title="Test with disable">
-        D
-      </button>
-      <button
-        class="btn btn-default pull-right"
         ng-click="hotkeys.toggleCheatSheet()"
         title="Keyboard shortcuts">
         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </button>
+      <button
+        class="btn btn-default pull-right"
+        ng-click="toggleThumbVideosH()"
+        title="Test with hide">
+        H
+      </button>
+      <button
+        class="btn btn-default pull-right"
+        ng-click="toggleThumbVideos()"
+        title="Test with disable">
+        D
       </button>
     </div>
     <jh-chat messages="data.logEntries()"></jh-chat>

@@ -18,7 +18,8 @@
       restrict: 'EA',
       templateUrl: 'app/components/videochat/jh-video-chat.html',
       scope: {
-        thumbVideos: '='
+        thumbVideos: '=',
+        thumbVideosH: '='
       },
       controllerAs: 'vm',
       bindToController: true,
