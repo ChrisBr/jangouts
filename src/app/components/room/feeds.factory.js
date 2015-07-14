@@ -11,9 +11,9 @@
   angular.module('janusHangouts')
     .factory('Feed', feedFactory);
 
-  feedFactory.$inject = ['$timeout', 'DataChannelService'];
+  feedFactory.$inject = ['$timeout', 'DataChannelService', 'Notifier'];
 
-  function feedFactory($timeout, DataChannelService) {
+  function feedFactory($timeout, DataChannelService, Notifier) {
     return function(attrs) {
       attrs = attrs || {};
       var that = this;
